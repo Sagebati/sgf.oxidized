@@ -1,5 +1,5 @@
 [package]
-name = "oxyd_sfg"
+name = "oxyd_sgf"
 version = "0.1.0"
 authors = ["Samuel Batissou <samuelbatissou@gmail.com>"]
 edition = "2018"
