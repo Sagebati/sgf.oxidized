@@ -1,4 +1,4 @@
-sgf.oxidized
+SGF .oxidized
 ============
 use pest to parse the SGF
 
@@ -18,6 +18,7 @@ Ex:
 ```
 
 The file begin with : 
-
+```
 ;FF[4]GM[1]SZ[19]ST[2]CA[UTF-8]SO[gokifu.com]AP[SGFC:1.16]
+```
 
