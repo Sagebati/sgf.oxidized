@@ -13,6 +13,7 @@ use pest::Parser;
 pub struct SgfParser;
 
 ///
+/// Represents the FOO[BAR]
 /// A property can have multiple values like AW[][][]
 ///
 #[derive(Clone, Debug)]
@@ -88,8 +89,8 @@ impl GameTree {
 }
 
 ///
-    /// Needs a pair with the node rule
-    ///
+/// Needs a pair with the node rule
+///
 pub fn parse_node(pair: Pair<Rule>) -> Node {
     let mut new = Node::new();
     pair.into_inner().into_iter()
@@ -162,5 +163,11 @@ mod tests {
             .expect("unsuccessful parse") // unwrap the parse result
             .next().unwrap(); // get and unwrap the `file` rule; never fails
         dbg!(Sgf::from_pair(collection));
+    }
+
+    #[test]
+    fn from_file_test() {
+        let sgf = Sgf::from_file("test.sgf").unwrap();
+        assert_eq!(sgf.collection.first().unwrap().root["FF"].values.first().unwrap(), "4")
     }
 }
