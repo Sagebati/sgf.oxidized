@@ -1,0 +1,19 @@
+WHITESPACE = _{ " " | NEWLINE}
+uc_letter = _{ "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" }
+prop_value  = { (!"]" ~ ANY)+ }
+
+b_value = _{ "[" ~ prop_value ~ "]" }
+prop_ident = { uc_letter* }
+property = { prop_ident ~ b_value+ }
+node = { ";" ~ property* }
+node_seq = { node* }
+root_node = _{ node }
+tail = { "(" ~ node_seq ~ tail* ~ ")" }
+gametree = { "(" ~ root_node ~ node_seq ~ tail* ~ ")" }
+collection = { gametree* }
+
+file = _{
+ SOI
+ ~ collection
+ ~ EOI
+}
